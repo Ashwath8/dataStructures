@@ -1,4 +1,5 @@
-import java.util.ListIterator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 // Generic Implementation of a linked list
 /*
@@ -10,7 +11,15 @@ import java.util.ListIterator;
     5. Add/Remove in the middle
 
  */
-public class LinkedListTest<E> {
+// Iterable helps to do something like this
+// for (Int x : linkedlistObj) { syso}
+// To use the above syntax you would need to implement the Iterable interface
+public class SinglyLinkedList<E> implements Iterable<E> {
+    @Override
+    public Iterator<E> iterator() {
+        return new IteratorHelper();
+    }
+
     // A class that depicts the structure of a node
     // Node contains a pointer to the next node and a value
     public class Node<E> {
@@ -32,7 +41,7 @@ public class LinkedListTest<E> {
     private int size;
 
     // Initializing the LinkedList
-    public LinkedListTest() {
+    public SinglyLinkedList() {
         head = tail = null;
         size = 0;
     }
@@ -172,6 +181,35 @@ public class LinkedListTest<E> {
             return null;
         }
         return tail.data;
+    }
+
+    class IteratorHelper implements Iterator<E> {
+        Node<E> index;
+
+        public IteratorHelper() {
+            index = head;
+        }
+
+        @Override
+        // Checks to see if there is a element next to
+        public boolean hasNext() {
+            return (index != null);
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E val = index.data;
+            index = index.next;
+            return val;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 
     @Override
