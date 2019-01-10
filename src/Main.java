@@ -8,5 +8,10 @@ public class Main {
         for(Integer obj: singlyLinkedList) {
             System.out.println(obj);
         }
+        DoublyLinkedList<String> doublyLinkedList = new DoublyLinkedList<String>();
+        doublyLinkedList.addFirst("1");
+        System.out.println(doublyLinkedList);
+        doublyLinkedList.addFirst("2");
+        System.out.println(doublyLinkedList);
     }
 }
