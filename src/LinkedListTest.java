@@ -122,6 +122,58 @@ public class LinkedListTest<E> {
         }
     }
 
+    //Removing an element based on provided data
+    public E remove(E obj) {
+        // head -> n1 <- tail
+        // head -> n1 -> n2 -> n3 <- tail
+        Node<E> curr = head;
+        Node<E> prev = null;
+        while (curr != null) {
+            if (((Comparable<E>) obj).compareTo(curr.data) == 0) {
+                if (curr == head) {
+                    return removeFirst();
+                }
+                if (curr == tail) {
+                    return removeLast();
+                }
+                // Yowza
+                prev.next = curr.next;
+                size--;
+                return curr.data;
+            }
+            // Yowza
+            prev = curr;
+            curr = curr.next;
+        }
+        return null;
+    }
+
+    // Checking to see if an element exists in the list
+    public boolean contains(E obj) {
+        Node<E> curr = head;
+        while (curr != null) {
+            if (((Comparable<E>) obj).compareTo(curr.data) == 0) {
+                return true;
+            }
+            curr = curr.next;
+        }
+        return false;
+    }
+
+    public E peekFirst() {
+        if (head == null) {
+            return null;
+        }
+        return head.data;
+    }
+
+    public E peekLast() {
+        if (tail == null) {
+            return null;
+        }
+        return tail.data;
+    }
+
     @Override
     public String toString() {
         if (size == 0) {
