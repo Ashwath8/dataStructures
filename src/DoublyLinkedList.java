@@ -49,12 +49,10 @@ public class DoublyLinkedList<E> implements Iterable<E> {
         Node<E> newNode = new Node<E>(obj);
         // If there is an empty list
         if (head == null) {
-            head = newNode;
-            tail = newNode;
+            head = tail = newNode;
             size++;
             return;
         }
-        // Head -> n1 <- tail
         // If an element already exists
         Node<E> tmp = head;
         // Setting the newNode as the previous node for the already existing element
@@ -63,6 +61,25 @@ public class DoublyLinkedList<E> implements Iterable<E> {
         newNode.next = head;
         // Setting the newNode as the head
         head = newNode;
+        size++;
+    }
+
+    public void addLast(E obj) {
+        Node<E> newNode = new Node<E>(obj);
+        // If there is an empty list
+        if (head == null) {
+            head = tail = newNode;
+            size++;
+            return;
+        }
+        // If an element already exists in the list
+        Node<E> tmp = tail;
+        // setting the next reference for the current tail element
+        tmp.next = newNode;
+        // setting the previous reference for the new incoming element
+        newNode.prev = tmp;
+        // setting the tail to point to the new element
+        tail = newNode;
         size++;
     }
 

@@ -12,6 +12,7 @@ public class Main {
         doublyLinkedList.addFirst("1");
         System.out.println(doublyLinkedList);
         doublyLinkedList.addFirst("2");
+        doublyLinkedList.addLast("3");
         System.out.println(doublyLinkedList);
     }
 }
