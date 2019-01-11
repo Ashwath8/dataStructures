@@ -73,7 +73,7 @@ public class Hashing<K, V> implements Iterable<K> {
         int position;
 
         public HashIteratorHelper() {
-            keys = (T[]) Object[numElements];
+            keys = (T[]) new Object[numElements];
             int p = 0;
             for (int i = 0; i < tableSize; i++) {
                 LinkedList<HashElement<K, V>> list = hArray[i];
