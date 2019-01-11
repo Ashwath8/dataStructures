@@ -83,6 +83,25 @@ public class DoublyLinkedList<E> implements Iterable<E> {
         size++;
     }
 
+    public E removeFirst() {
+        if (head == null) {
+            return null;
+        } else if (size == 1) {
+            Node<E> tmp = head;
+            head = tail = null;
+            size--;
+            return tmp.data;
+        } else {
+            // n1(head) -> n2 (head.next)
+            Node<E> tmp = head;
+            Node<E> nextNode = head.next;
+            nextNode.prev = null;
+            head = nextNode;
+            size--;
+            return tmp.data;
+        }
+    }
+
     @Override
     public String toString() {
         if (size == 0) {
